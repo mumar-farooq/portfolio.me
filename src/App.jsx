@@ -12,7 +12,7 @@ import geminiGridBg from '../Gemini_Generated_Image_4pn3y44pn3y44pn3.png';
 import geminiCardBg from '../Gemini_Generated_Image_vdflvvvdflvvvdfl.png';
 import geminiDetailsBg from '../Gemini_Generated_Image_l5f699l5f699l5f6.png';
 import mufLogo from '../Muf.svg.jpeg';
-
+import mlPng from '../ml.png';
 /* ==================================================================
    DATA — replace with your own content
 ================================================================== */
@@ -434,9 +434,10 @@ const ProjectCard = ({ project }) => {
         <div style={{
           position: 'relative',
           height: 220,
-          backgroundImage: project.img ? `url(${project.img})` : `linear-gradient(135deg, ${project.bg}, #ffffff)`,
+          backgroundImage: `url(${project.img || financeBg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          backgroundColor: '#ffffff',
         }}>
           <div style={{
             position: 'absolute', inset: 0,
@@ -459,9 +460,13 @@ const ProjectCard = ({ project }) => {
         </div>
         <div style={{ padding: 20 }}>
           <span style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
             fontFamily: "'Inter', sans-serif", fontSize: 12.5, fontWeight: 600, color: T.accent,
             textTransform: 'uppercase', letterSpacing: '0.04em',
-          }}>{project.tag}</span>
+          }}>
+            <img src={mlPng} alt="" style={{ width: 18, height: 18, objectFit: 'contain' }} />
+            {project.tag}
+          </span>
           <h3 style={{
             fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 17, color: T.ink,
             margin: '12px 0 0', lineHeight: 1.4,
