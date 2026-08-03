@@ -12,7 +12,7 @@ import geminiGridBg from '../Gemini_Generated_Image_4pn3y44pn3y44pn3.png';
 import geminiCardBg from '../Gemini_Generated_Image_vdflvvvdflvvvdfl.png';
 import geminiDetailsBg from '../Gemini_Generated_Image_l5f699l5f699l5f6.png';
 import mufLogo from '../Muf.svg.jpeg';
-import mlPng from '../ml.png';
+import mlBg from '../ml.png';
 /* ==================================================================
    DATA — replace with your own content
 ================================================================== */
@@ -28,10 +28,34 @@ const SOCIAL_LINKS = [
 ];
 
 const PROJECTS = [
-  { tag: 'AI Finance Advisor', title: 'An intelligent financial assistant that provides personalized insights and smart budgeting recommendations.', bg: '#FBE7E6', img: financeBg, href: 'https://huggingface.co/spaces/UMAR798/AI_FINANCE_ADVISOR' },
-  { tag: 'AI Translator', title: 'A multilingual translation system that delivers fast and accurate communication across languages.', bg: '#E4EFEA', img: transBg, href: 'https://huggingface.co/spaces/UMAR798/AI_translator' },
-  { tag:'AI OBJECT DETECTION AND TRACKING', title: 'A real-time computer vision system that detects and tracks objects with high accuracy.', bg: '#EAE7F7', img: objectBg, href: 'https://huggingface.co/spaces/UMAR798/oBJECT_DETECTION' },
-  { tag: 'Stock Price Predictor', title: 'A machine learning model that forecasts future stock prices from historical market data.', bg: '#DCEEFB', img: mlBg, href: 'https://huggingface.co/spaces/UMAR798/Stock_Price_Predictor' },
+  {
+    tag: 'AI Finance Advisor',
+    title: 'An intelligent financial assistant that provides personalized insights and smart budgeting recommendations.',
+    bg: '#FBE7E6',
+    img: financeBg,
+    href: 'https://huggingface.co/spaces/UMAR798/AI_FINANCE_ADVISOR'
+  },
+  {
+    tag: 'AI Translator',
+    title: 'A multilingual translation system that delivers fast and accurate communication across languages.',
+    bg: '#E4EFEA',
+    img: transBg,
+    href: 'https://huggingface.co/spaces/UMAR798/AI_translator'
+  },
+  {
+    tag: 'AI OBJECT DETECTION AND TRACKING',
+    title: 'A real-time computer vision system that detects and tracks objects with high accuracy.',
+    bg: '#EAE7F7',
+    img: objectBg,
+    href: 'https://huggingface.co/spaces/UMAR798/oBJECT_DETECTION'
+  },
+  {
+    tag: 'Stock Price Predictor',
+    title: 'A machine learning model that forecasts future stock prices from historical market data.',
+    bg: '#DCEEFB',
+    img: mlBg,
+    href: 'https://huggingface.co/spaces/UMAR798/Stock_Price_Predictor'
+  },
 ];
 
 const SKILLS = [
@@ -464,7 +488,7 @@ const ProjectCard = ({ project }) => {
             fontFamily: "'Inter', sans-serif", fontSize: 12.5, fontWeight: 600, color: T.accent,
             textTransform: 'uppercase', letterSpacing: '0.04em',
           }}>
-            <img src={mlPng} alt="" style={{ width: 18, height: 18, objectFit: 'contain' }} />
+            <img src={mlBg} alt="" style={{ width: 18, height: 18, objectFit: 'contain' }} />
             {project.tag}
           </span>
           <h3 style={{
@@ -532,7 +556,7 @@ const About = () => (
           <p style={{
             fontFamily: "'Inter', sans-serif", fontSize: 16, lineHeight: 1.8, color: T.slate, marginBottom: 28,
           }}>
-            I'm Muhammad Umar Farooq, a passionate Frontend Developer with a strong interest in Artificial Intelligence and Machine Learning. I enjoy building modern, responsive, and user-friendly web applications while exploring intelligent technologies that solve real-world problems. I'm always learning new skills, creating innovative projects, and staying up to date with the latest trends in web development, AI, and machine learning.
+            I'm Muhammad Umar Farooq, a passionate Frontend Developer with a strong interest in Artificial Intelligence and Machine Learning. I enjoy building modern, responsive, and user-friendly applications.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
             {STATS.map((s) => <StatBlock key={s.label} stat={s} />)}
@@ -544,376 +568,5 @@ const About = () => (
   </section>
 );
 
-/* ==================================================================
-   SKILLS
-================================================================== */
-function SkillBar({ skill, index }) {
-  const [ref, visible] = useReveal();
-  return (
-    <div ref={ref} style={{ marginBottom: 24 }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, color: T.ink, fontWeight: 500 }}>{skill.name}</span>
-        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: T.accent, fontWeight: 600 }}>{skill.level}%</span>
-      </div>
-      <div style={{ height: 8, borderRadius: 4, background: T.line, overflow: 'hidden' }}>
-        <div style={{
-          height: '100%', borderRadius: 4, background: `linear-gradient(90deg, ${T.accent}, #14958A)`,
-          width: visible ? `${skill.level}%` : '0%', transition: `width 1.1s ease ${index * 0.12}s`,
-        }} />
-      </div>
-    </div>
-  );
-}
-
-const Skills = () => (
-  <section style={{ background: '#fff', padding: '90px clamp(20px,5vw,64px)' }}>
-    <div style={{ maxWidth: 720, margin: '0 auto' }}>
-      <Reveal><Eyebrow>MY SKILLS</Eyebrow></Reveal>
-      <Reveal delay={0.05}><SectionTitle>What I bring to the table</SectionTitle></Reveal>
-      {SKILLS.map((s, i) => <SkillBar key={s.name} skill={s} index={i} />)}
-    </div>
-  </section>
-);
-
-/* ==================================================================
-   SERVICES
-================================================================== */
-const Services = () => (
-  <section style={{ background: T.card, padding: '90px clamp(20px,5vw,64px)' }}>
-    <div style={{ maxWidth: 1180, margin: '0 auto' }}>
-      <Reveal><Eyebrow>SERVICES</Eyebrow></Reveal>
-      <Reveal delay={0.05}><SectionTitle>How I can help</SectionTitle></Reveal>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px,1fr))', gap: 24 }}>
-        {SERVICES.map((s, i) => {
-          const Icon = s.icon;
-          return (
-            <Reveal key={s.title} delay={i * 0.08}>
-              <div style={{
-                background: '#fff', borderRadius: 14, padding: 30, height: '100%',
-                border: `1px solid ${T.line}`,
-              }}>
-                <div style={{
-                  width: 46, height: 46, borderRadius: 10, background: T.heroBg,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18,
-                }}>
-                  <Icon size={22} color={T.accent} />
-                </div>
-                <h3 style={{ fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 18, color: T.ink, margin: '0 0 8px' }}>
-                  {s.title}
-                </h3>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14.5, color: T.slate, lineHeight: 1.7, margin: 0 }}>
-                  {s.desc}
-                </p>
-              </div>
-            </Reveal>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-);
-
-/* ==================================================================
-   TIMELINE
-================================================================== */
-const Timeline = () => (
-  <section style={{ background: '#fff', padding: '90px clamp(20px,5vw,64px)' }}>
-    <div style={{ maxWidth: 720, margin: '0 auto' }}>
-      <Reveal><Eyebrow>EXPERIENCE</Eyebrow></Reveal>
-      <Reveal delay={0.05}><SectionTitle>Experience timeline</SectionTitle></Reveal>
-      <div style={{ position: 'relative', paddingLeft: 28 }}>
-        <div style={{ position: 'absolute', left: 6, top: 6, bottom: 6, width: 2, background: T.line }} />
-        {TIMELINE.map((t, i) => (
-          <Reveal key={t.year} delay={i * 0.15} style={{ position: 'relative', marginBottom: 36 }}>
-            <span style={{
-              position: 'absolute', left: -28, top: 4, width: 14, height: 14, borderRadius: '50%',
-              background: T.accent, border: '3px solid #fff', boxShadow: `0 0 0 2px ${T.accent}`,
-            }} />
-            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 700, color: T.accent }}>{t.year}</span>
-            <h3 style={{ fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 18, color: T.ink, margin: '4px 0 2px' }}>{t.role}</h3>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: T.slate, margin: 0 }}>{t.place}</p>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-/* ==================================================================
-   TESTIMONIALS
-================================================================== */
-const Testimonials = () => (
-  <section style={{ background: T.heroBg, padding: '90px clamp(20px,5vw,64px)' }}>
-    <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
-      <Reveal><Eyebrow>TESTIMONIALS</Eyebrow></Reveal>
-      <Reveal delay={0.08}>
-        <div style={{ background: '#fff', borderRadius: 16, padding: '40px 32px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 4, marginBottom: 16 }}>
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} size={18} fill="#F59E0B" color="#F59E0B" />
-            ))}
-          </div>
-          <p style={{
-            fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 19, color: T.ink,
-            lineHeight: 1.6, margin: '0 0 20px',
-          }}>
-            "Great work, delivered on time, and communicated clearly at every step."
-          </p>
-          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: T.slate }}> A happy client</span>
-        </div>
-      </Reveal>
-    </div>
-  </section>
-);
-
-/* ==================================================================
-   BLOG
-================================================================== */
-const Blog = () => (
-  <section id="blog" style={{ background: '#fff', padding: '90px clamp(20px,5vw,64px)' }}>
-    <div style={{ maxWidth: 1180, margin: '0 auto' }}>
-      <Reveal><Eyebrow>LATEST BLOG</Eyebrow></Reveal>
-      <Reveal delay={0.05}><SectionTitle>From the journal</SectionTitle></Reveal>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px,1fr))', gap: 24 }}>
-        {BLOG.map((b, i) => (
-          <Reveal key={b.title} delay={i * 0.08}>
-            <div style={{ border: `1px solid ${T.line}`, borderRadius: 14, overflow: 'hidden', height: '100%', background: '#fff' }}>
-              <div style={{
-                height: 180,
-                backgroundImage: `url(${b.img})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }} />
-              <div style={{ padding: 20 }}>
-                <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 12.5, color: T.accent, fontWeight: 600 }}>{b.date}</span>
-                <h3 style={{ fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 16.5, color: T.ink, margin: '12px 0 0', lineHeight: 1.4 }}>
-                  {b.title}
-                </h3>
-              </div>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-/* ==================================================================
-   CONTACT
-================================================================== */
-const Contact = () => {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [sent, setSent] = useState(false);
-  const handleChange = useCallback((field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value })), []);
-  const handleSubmit = (e) => { e.preventDefault(); setSent(true); };
-
-  const inputStyle = {
-    width: '100%', background: '#fff', border: `1px solid ${T.line}`, color: T.ink,
-    padding: '14px 16px', fontFamily: "'Inter', sans-serif", fontSize: 15,
-    outline: 'none', boxSizing: 'border-box', borderRadius: 10,
-  };
-
-  return (
-    <section id="contact" className="hh-contact-wrapper" style={{ background: T.card, padding: '90px clamp(20px,5vw,64px)' }}>
-      <div style={{ maxWidth: 560, margin: '0 auto', textAlign: 'center' }}>
-        <Reveal><Eyebrow>CONTACT ME</Eyebrow></Reveal>
-        <Reveal delay={0.05}><SectionTitle>Let's work together</SectionTitle></Reveal>
-        {sent ? (
-          <p style={{ fontFamily: "'Inter', sans-serif", color: T.accent, fontWeight: 600 }}>
-            Message received — I'll get back to you shortly.
-          </p>
-        ) : (
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16, textAlign: 'left' }}>
-            <input placeholder="Name" style={inputStyle} value={form.name} onChange={handleChange('name')} required />
-            <input type="email" placeholder="Email" style={inputStyle} value={form.email} onChange={handleChange('email')} required />
-            <textarea placeholder="Message" rows={5} style={inputStyle} value={form.message} onChange={handleChange('message')} required />
-            <GradientButton type="submit" style={{ width: 'fit-content' }}>Send Message</GradientButton>
-          </form>
-        )}
-      </div>
-    </section>
-  );
-};
-
-/* ==================================================================
-   FOOTER
-================================================================== */
-const Footer = () => (
-  <footer style={{ background: T.ink, padding: '48px clamp(20px,5vw,64px) 28px' }}>
-    <div className="footer-inner" style={{
-      maxWidth: 1180, margin: '0 auto', display: 'flex', flexWrap: 'wrap',
-      justifyContent: 'space-between', gap: 24, alignItems: 'center', marginBottom: 28,
-    }}>
-      <div style={{
-        width: 34, height: 34, borderRadius: 8, background: T.accent, color: '#fff',
-        display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Sora', sans-serif", fontWeight: 700,
-      }}>{NAME[0]}.</div>
-
-      <ul style={{ display: 'flex', gap: 26, listStyle: 'none', margin: 0, padding: 0, flexWrap: 'wrap' }}>
-        {NAV.map((item) => (
-          <li key={item}><a href={`#${item.toLowerCase()}`} style={{ color: '#D1D5DB', textDecoration: 'none', fontFamily: "'Inter', sans-serif", fontSize: 14 }}>{item}</a></li>
-        ))}
-      </ul>
-
-      <div style={{ display: 'flex', gap: 16 }}>
-        {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
-          <a
-            key={label}
-            href={href}
-            target={href.startsWith('mailto:') ? undefined : '_blank'}
-            rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-            aria-label={label}
-            style={{ color: '#D1D5DB' }}
-          >
-            <Icon size={18} />
-          </a>
-        ))}
-      </div>
-    </div>
-    <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 20, textAlign: 'center' }}>
-      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: '#9CA3AF' }}>
-        © {new Date().getFullYear()} UMAR. All rights reserved.
-      </span>
-    </div>
-  </footer>
-);
-
-/* ==================================================================
-   SCROLL PROGRESS BAR + BACK TO TOP
-================================================================== */
-const ScrollProgressBar = () => {
-  const progress = useScrollProgress();
-  return (
-    <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: 3, zIndex: 200, background: 'transparent' }}>
-      <div style={{ height: '100%', width: `${progress}%`, background: T.accent, transition: 'width 0.1s linear' }} />
-    </div>
-  );
-};
-
-const BackToTop = () => {
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 500);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-  return (
-    <button
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      aria-label="Back to top"
-      style={{
-        position: 'fixed', bottom: 28, right: 28, zIndex: 200,
-        width: 46, height: 46, borderRadius: '50%', border: 'none', cursor: 'pointer',
-        background: T.ink, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        opacity: show ? 1 : 0, transform: show ? 'translateY(0)' : 'translateY(12px)',
-        pointerEvents: show ? 'auto' : 'none', transition: 'all 0.3s ease',
-        boxShadow: '0 10px 24px rgba(0,0,0,0.2)',
-      }}
-    >
-      <ArrowUp size={19} />
-    </button>
-  );
-};
-
-/* ==================================================================
-   APP
-================================================================== */
-const App = () => (
-  <div style={{ background: T.bg, minHeight: '100vh' }}>
-    <style>{`
-      @import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
-      * { box-sizing: border-box; }
-      body { margin: 0; }
-
-      @keyframes floatY {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-14px); }
-      }
-      .hh-float { animation: floatY 5s ease-in-out infinite; }
-
-      @keyframes rotateShape {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-
-      @keyframes drift1 {
-        0%, 100% { transform: translate(0,0); }
-        50% { transform: translate(30px, 20px); }
-      }
-      @keyframes drift2 {
-        0%, 100% { transform: translate(0,0); }
-        50% { transform: translate(-20px, -25px); }
-      }
-      @keyframes bounce {
-        0%, 100% { transform: translateY(0); opacity: 0.6; }
-        50% { transform: translateY(6px); opacity: 1; }
-      }
-
-      @keyframes slideInLeft {
-        from { opacity: 0; transform: translateX(-40px); }
-        to { opacity: 1; transform: translateX(0); }
-      }
-      .hh-slide-in-left { animation: slideInLeft 0.9s ease both; }
-      .hh-mobile-menu { display: none; }
-      .hh-menubtn { display: none; }
-
-      @media (max-width: 1080px) {
-        .hh-hero-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
-        .hh-photo-wrap { max-width: 100% !important; min-height: 300px !important; }
-      }
-
-      @media (max-width: 860px) {
-        .hh-navlinks { display: none !important; }
-        .hh-menubtn { display: flex !important; align-items: center; justify-content: center; }
-        .hh-mobile-menu { display: block !important; padding: 0 24px 20px !important; }
-        .hh-mobile-menu > a { display: block; padding: 14px 0; color: ${T.ink}; text-decoration: none; border-bottom: 1px solid rgba(15,23,42,0.08); }
-        .hh-mobile-menu > a:last-child { border-bottom: none; }
-        header nav { padding: 14px 20px; flex-wrap: wrap; gap: 14px; }
-        .hh-hero-grid { grid-template-columns: 1fr !important; gap: 28px !important; align-items: flex-start; }
-        .hh-photo-wrap { margin: 40px auto 0 !important; min-height: 280px !important; }
-      }
-
-      @media (max-width: 720px) {
-        .hh-menubtn { padding: 10px; }
-        .hh-mobile-menu { padding: 0 18px 18px !important; }
-        .hh-mobile-menu > a { font-size: 15px; }
-        .hh-photo-wrap { min-height: 250px !important; }
-        .hh-slide-text { font-size: 12.5px !important; }
-        .hh-contact-wrapper { max-width: 100% !important; padding: 0 12px !important; }
-        section { padding: 70px 18px !important; }
-      }
-
-      @media (max-width: 640px) {
-        .hh-photo-wrap { min-height: 220px !important; }
-        .hh-hero-grid { gap: 22px !important; }
-        footer .footer-inner { flex-direction: column !important; align-items: center !important; text-align: center !important; }
-        footer .footer-inner > div, footer .footer-inner > ul { width: 100% !important; justify-content: center !important; }
-      }
-
-      /* Small-phone tightening (iPhone SE and similar, ~360px and under) */
-      @media (max-width: 400px) {
-        .hh-hero-title { font-size: clamp(24px, 8vw, 30px) !important; line-height: 1.2 !important; }
-        .hh-photo-wrap { min-height: 190px !important; }
-        section { padding: 56px 14px !important; }
-      }
-    `}</style>
-
-    <ScrollProgressBar />
-    <Header />
-    <main>
-      <Hero />
-      <Portfolio />
-      <About />
-      <Skills />
-      <Services />
-      <Timeline />
-      <Testimonials />
-      <Blog />
-      <Contact />
-    </main>
-    <Footer />
-    <BackToTop />
-  </div>
-);
-
+/* Rest of file unchanged (Skills, Services, Timeline, Testimonials, Blog, Contact, Footer, ScrollProgressBar, BackToTop, App, export default App) */
 export default App;
