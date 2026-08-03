@@ -31,7 +31,7 @@ const PROJECTS = [
   { tag: 'AI Finance Advisor', title: 'An intelligent financial assistant that provides personalized insights and smart budgeting recommendations.', bg: '#FBE7E6', img: financeBg, href: 'https://huggingface.co/spaces/UMAR798/AI_FINANCE_ADVISOR' },
   { tag: 'AI Translator', title: 'A multilingual translation system that delivers fast and accurate communication across languages.', bg: '#E4EFEA', img: transBg, href: 'https://huggingface.co/spaces/UMAR798/AI_translator' },
   { tag:'AI OBJECT DETECTION AND TRACKING', title: 'A real-time computer vision system that detects and tracks objects with high accuracy.', bg: '#EAE7F7', img: objectBg, href: 'https://huggingface.co/spaces/UMAR798/oBJECT_DETECTION' },
-  { tag: 'Stock Price Predictor', title: 'A machine learning model that forecasts future stock prices from historical market data.', bg: '#DCEEFB', img: null, href: 'https://huggingface.co/spaces/UMAR798/Stock_Price_Predictor' },
+  { tag: 'Stock Price Predictor', title: 'A machine learning model that forecasts future stock prices from historical market data.', bg: '#DCEEFB', img: mlpng, href: 'https://huggingface.co/spaces/UMAR798/Stock_Price_Predictor' },
 ];
 
 const SKILLS = [
