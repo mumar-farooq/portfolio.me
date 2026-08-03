@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
-  ArrowUpRight, Menu, X, Star, ArrowUp, Github, Linkedin, Twitter,
-  Instagram, Code2, Palette, Layout as LayoutIcon, ExternalLink,
+  ArrowUpRight, Menu, X, Star, ArrowUp, Github, Linkedin, Bot, Mail,
+  Code2, Palette, Layout as LayoutIcon, ExternalLink,
 } from 'lucide-react';
 import mebg from '../mebg.png';
 import financeBg from '../finance.png';
@@ -19,10 +19,19 @@ import mufLogo from '../Muf.svg.jpeg';
 const NAME = 'Muhammad Umar Farooq';
 const NAV = ['Home', 'About', 'Projects', 'Blog', 'Contact'];
 
+// Real profile links
+const SOCIAL_LINKS = [
+  { icon: Github, href: 'https://github.com/mumar-farooq', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/muhammad-umar-farooq-6964a430b/', label: 'LinkedIn' },
+  { icon: Bot, href: 'https://huggingface.co/UMAR798', label: 'Hugging Face' },
+  { icon: Mail, href: 'mailto:umarfaroqi6969@gmail.com', label: 'Email' },
+];
+
 const PROJECTS = [
-  { tag: 'AI Finance Advisor', title: 'An intelligent financial assistant that provides personalized insights and smart budgeting recommendations.', bg: '#FBE7E6', img: financeBg },
-  { tag: 'AI Translator', title: 'A multilingual translation system that delivers fast and accurate communication across languages.', bg: '#E4EFEA', img: transBg },
-  { tag:'AI OBJECT DETECTION AND TRACKING', title: 'A real-time computer vision system that detects and tracks objects with high accuracy.', bg: '#EAE7F7', img: objectBg },
+  { tag: 'AI Finance Advisor', title: 'An intelligent financial assistant that provides personalized insights and smart budgeting recommendations.', bg: '#FBE7E6', img: financeBg, href: 'https://huggingface.co/spaces/UMAR798/AI_FINANCE_ADVISOR' },
+  { tag: 'AI Translator', title: 'A multilingual translation system that delivers fast and accurate communication across languages.', bg: '#E4EFEA', img: transBg, href: 'https://huggingface.co/spaces/UMAR798/AI_translator' },
+  { tag:'AI OBJECT DETECTION AND TRACKING', title: 'A real-time computer vision system that detects and tracks objects with high accuracy.', bg: '#EAE7F7', img: objectBg, href: 'https://huggingface.co/spaces/UMAR798/oBJECT_DETECTION' },
+  { tag: 'Stock Price Predictor', title: 'A machine learning model that forecasts future stock prices from historical market data.', bg: '#DCEEFB', img: null, href: 'https://huggingface.co/spaces/UMAR798/Stock_Price_Predictor' },
 ];
 
 const SKILLS = [
@@ -43,7 +52,7 @@ const SERVICES = [
 
 const TIMELINE = [
   { year: '2026', role: 'Machine Learning Engineer', place: 'Fly RANK AI' },
-  { year: '2025', role: 'Artificial Intelligence Engineer', place: 'CODE GURU, FREELACNING' },
+  { year: '2025', role: 'Artificial Intelligence Engineer', place: 'CODE GURU, FREELANCING' },
   { year: '2024', role: 'Frontend Developer', place: 'RED STAR' },
 ];
 
@@ -245,7 +254,7 @@ const Header = () => {
       </nav>
 
       {menuOpen && (
-        <div className="hh-menubtn" style={{ background: T.card, padding: '0 24px 20px' }}>
+        <div className="hh-mobile-menu" style={{ background: T.card, padding: '0 24px 20px' }}>
           {NAV.map((item) => (
             <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)} style={{
               display: 'block', padding: '10px 0', color: T.ink, textDecoration: 'none',
@@ -327,11 +336,11 @@ const Hero = () => (
         }}>
       {/* Left: copy, slides in from left + fades */}
       <div className="hh-slide-in-left">
-        <h1 style={{
-          fontFamily: "'Sora', sans-serif", fontWeight: 800, fontSize: 'clamp(34px, 5vw, 52px)',
-          lineHeight: 1.12, margin: 0, color: T.ink,
+        <h1 className="hh-hero-title" style={{
+          fontFamily: "'Sora', sans-serif", fontWeight: 800, fontSize: 'clamp(28px, 6.5vw, 52px)',
+          lineHeight: 1.15, margin: 0, color: T.ink,
         }}>
-          Hey There,<br />I'm <span style={{ color: T.accent }}>  M UMAR FAROOQ </span>
+          Hey There,<br />I'm <span style={{ color: T.accent, marginLeft: 6 }}>M Umar Farooq</span>
         </h1>
         <p style={{
           marginTop: 14, fontFamily: "'Inter', sans-serif", fontSize: 17, fontWeight: 600, color: T.ink, opacity: 0.8,
@@ -403,10 +412,16 @@ const ProjectCard = ({ project }) => {
   const [hover, setHover] = useState(false);
   return (
     <Reveal>
-      <div
+      <a
+        href={project.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Open ${project.tag} on Hugging Face`}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         style={{
+          display: 'block',
+          textDecoration: 'none',
           cursor: 'pointer',
           transform: hover ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
           transition: 'transform 0.3s ease, box-shadow 0.3s ease',
@@ -419,7 +434,7 @@ const ProjectCard = ({ project }) => {
         <div style={{
           position: 'relative',
           height: 220,
-          backgroundImage: `url(${project.img})`,
+          backgroundImage: project.img ? `url(${project.img})` : `linear-gradient(135deg, ${project.bg}, #ffffff)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}>
@@ -452,7 +467,7 @@ const ProjectCard = ({ project }) => {
             margin: '12px 0 0', lineHeight: 1.4,
           }}>{project.title}</h3>
         </div>
-      </div>
+      </a>
     </Reveal>
   );
 };
@@ -498,6 +513,7 @@ const About = () => (
         }}>
         <Reveal delay={0.05}>
           <div style={{
+            position: 'relative',
             borderRadius: 16, aspectRatio: '3/4', backgroundImage: `url(${aboutBg})`,
             backgroundSize: 'cover', backgroundPosition: 'center',
             border: `2px solid ${T.ink}`, display: 'flex', alignItems: 'flex-end', justifyContent: 'center', overflow: 'hidden',
@@ -505,7 +521,6 @@ const About = () => (
             <div style={{
               position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.16), rgba(0,0,0,0.04))',
             }} />
-            
           </div>
         </Reveal>
         <Reveal delay={0.1}>
@@ -694,7 +709,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" style={{ background: T.card, padding: '90px clamp(20px,5vw,64px)' }}>
+    <section id="contact" className="hh-contact-wrapper" style={{ background: T.card, padding: '90px clamp(20px,5vw,64px)' }}>
       <div style={{ maxWidth: 560, margin: '0 auto', textAlign: 'center' }}>
         <Reveal><Eyebrow>CONTACT ME</Eyebrow></Reveal>
         <Reveal delay={0.05}><SectionTitle>Let's work together</SectionTitle></Reveal>
@@ -720,7 +735,7 @@ const Contact = () => {
 ================================================================== */
 const Footer = () => (
   <footer style={{ background: T.ink, padding: '48px clamp(20px,5vw,64px) 28px' }}>
-    <div style={{
+    <div className="footer-inner" style={{
       maxWidth: 1180, margin: '0 auto', display: 'flex', flexWrap: 'wrap',
       justifyContent: 'space-between', gap: 24, alignItems: 'center', marginBottom: 28,
     }}>
@@ -736,8 +751,17 @@ const Footer = () => (
       </ul>
 
       <div style={{ display: 'flex', gap: 16 }}>
-        {[Github, Linkedin, Twitter, Instagram].map((Icon, i) => (
-          <a key={i} href="#" style={{ color: '#D1D5DB' }}><Icon size={18} /></a>
+        {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
+          <a
+            key={label}
+            href={href}
+            target={href.startsWith('mailto:') ? undefined : '_blank'}
+            rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+            aria-label={label}
+            style={{ color: '#D1D5DB' }}
+          >
+            <Icon size={18} />
+          </a>
         ))}
       </div>
     </div>
@@ -825,13 +849,47 @@ const App = () => (
         to { opacity: 1; transform: translateX(0); }
       }
       .hh-slide-in-left { animation: slideInLeft 0.9s ease both; }
-
+      .hh-mobile-menu { display: none; }
       .hh-menubtn { display: none; }
+
+      @media (max-width: 1080px) {
+        .hh-hero-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+        .hh-photo-wrap { max-width: 100% !important; min-height: 300px !important; }
+      }
+
       @media (max-width: 860px) {
         .hh-navlinks { display: none !important; }
-        .hh-menubtn { display: flex !important; }
-        .hh-hero-grid { grid-template-columns: 1fr !important; }
-        .hh-photo-wrap { margin: 40px auto 0 !important; }
+        .hh-menubtn { display: flex !important; align-items: center; justify-content: center; }
+        .hh-mobile-menu { display: block !important; padding: 0 24px 20px !important; }
+        .hh-mobile-menu > a { display: block; padding: 14px 0; color: ${T.ink}; text-decoration: none; border-bottom: 1px solid rgba(15,23,42,0.08); }
+        .hh-mobile-menu > a:last-child { border-bottom: none; }
+        header nav { padding: 14px 20px; flex-wrap: wrap; gap: 14px; }
+        .hh-hero-grid { grid-template-columns: 1fr !important; gap: 28px !important; align-items: flex-start; }
+        .hh-photo-wrap { margin: 40px auto 0 !important; min-height: 280px !important; }
+      }
+
+      @media (max-width: 720px) {
+        .hh-menubtn { padding: 10px; }
+        .hh-mobile-menu { padding: 0 18px 18px !important; }
+        .hh-mobile-menu > a { font-size: 15px; }
+        .hh-photo-wrap { min-height: 250px !important; }
+        .hh-slide-text { font-size: 12.5px !important; }
+        .hh-contact-wrapper { max-width: 100% !important; padding: 0 12px !important; }
+        section { padding: 70px 18px !important; }
+      }
+
+      @media (max-width: 640px) {
+        .hh-photo-wrap { min-height: 220px !important; }
+        .hh-hero-grid { gap: 22px !important; }
+        footer .footer-inner { flex-direction: column !important; align-items: center !important; text-align: center !important; }
+        footer .footer-inner > div, footer .footer-inner > ul { width: 100% !important; justify-content: center !important; }
+      }
+
+      /* Small-phone tightening (iPhone SE and similar, ~360px and under) */
+      @media (max-width: 400px) {
+        .hh-hero-title { font-size: clamp(24px, 8vw, 30px) !important; line-height: 1.2 !important; }
+        .hh-photo-wrap { min-height: 190px !important; }
+        section { padding: 56px 14px !important; }
       }
     `}</style>
 
